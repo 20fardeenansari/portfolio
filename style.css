@@ -146,6 +146,89 @@ body::after {
     width: 100%;
 }
 
+/* Menu Toggle Button */
+.menu-toggle {
+    display: none;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--white);
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--transition);
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-toggle:hover {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    transform: translateY(-2px);
+}
+
+/* Mobile Navbar */
+@media (max-width: 768px) {
+    .nav-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        position: relative;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        right: 1rem;
+        width: 220px;
+        padding: 1rem;
+        border-radius: 18px;
+        background: rgba(11, 17, 32, 0.95);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: 0.3s ease;
+        z-index: 1001;
+    }
+
+    .nav-links.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .nav-links li {
+        width: 100%;
+        list-style: none;
+    }
+
+    .nav-links a {
+        display: block;
+        width: 100%;
+        padding: 0.85rem 1rem;
+        border-radius: 12px;
+        color: var(--white);
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+        background: rgba(255, 255, 255, 0.08);
+    }
+}
+
 /* Hero */
 .hero {
     min-height: 100vh;
@@ -570,11 +653,7 @@ footer {
         padding: 1rem;
     }
 
-    .nav-links {
-        gap: 1rem;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+
 
     .hero {
         padding-top: 150px;
