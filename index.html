@@ -18,7 +18,11 @@
         <div class="nav-content">
             <h1 class="logo">Fardeen</h1>
 
-            <ul class="nav-links">
+            <button class="menu-toggle" id="menuToggle" aria-label="Open Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills-interests">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
@@ -207,6 +211,39 @@
     <footer>
         <p>&copy; 2026 Fardeen. All rights reserved.</p>
     </footer>
+    <script>
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+        const menuIcon = menuToggle.querySelector("i");
+
+        menuToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("show");
+
+            if (navLinks.classList.contains("show")) {
+                menuIcon.classList.remove("fa-bars");
+                menuIcon.classList.add("fa-xmark");
+            } else {
+                menuIcon.classList.remove("fa-xmark");
+                menuIcon.classList.add("fa-bars");
+            }
+        });
+
+        document.querySelectorAll(".nav-links a").forEach(link => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("show");
+                menuIcon.classList.remove("fa-xmark");
+                menuIcon.classList.add("fa-bars");
+            });
+        });
+
+        document.addEventListener("click", (e) => {
+            if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                navLinks.classList.remove("show");
+                menuIcon.classList.remove("fa-xmark");
+                menuIcon.classList.add("fa-bars");
+            }
+        });
+    </script>
 </body>
 
 </html>
